@@ -21,44 +21,43 @@ The application:
 
 ## Architecture
 
-
 Resume PDF
-    │
-    ▼
+    |
+    v
 PDF Text Extraction
-    │
-    ▼
+    |
+    v
 Resume Chunking
-    │
-    ▼
+    |
+    v
 Sentence Transformer
 (all-MiniLM-L6-v2)
-    │
-    ▼
+    |
+    v
 Resume Embeddings
-    │
-    │
-Job Description ──► Requirements
-    │
-    ▼
-Hybrid Retrieval
-┌──────────┴──────────┐
-│                     │
-Semantic Score        Keyword Score
-│                     │
-└──────────┬──────────┘
-    ▼
-Relevant Evidence
-    │
-    ▼
-LLM
-(Qwen3-0.6B)
-    │
-    ▼
-Match + Gap Analysis
-    │
-    ▼
-Gradio UI
+    |
+    |
+Job Description ---> Requirement Extraction
+                         |
+                         v
+                  Hybrid Retrieval
+                   /            \
+                  /              \
+       Semantic Similarity    Keyword Matching
+                  \              /
+                   \            /
+                    v          v
+                 Ranked Evidence
+                       |
+                       v
+                      LLM
+                (Qwen3-0.6B)
+                       |
+                       v
+                Match + Gap Analysis
+                       |
+                       v
+                   Gradio UI
 
 
 ## Key Features
@@ -73,25 +72,24 @@ Gradio UI
 - Designed to avoid unsupported claims by providing retrieved resume evidence to the LLM
 
 ## Project Structure
-
+```text
 ai-career-copilot/
-│
 ├── app/
-│   ├── pdf_reader.py
 │   ├── job_analyzer.py
-│   ├── resume_search.py
-│   └── llm.py
-│
+│   ├── llm.py
+│   ├── pdf_reader.py
+│   └── resume_search.py
 ├── tests/
-    ├── test_pdf_reader.py 
-    ├── test_job_analyzer.py
-    ├── test_llm.py
-    ├── test_resume_search.py
-    └── test_explain.py
-├── ui.py
+│   ├── test_explain.py
+│   ├── test_job_analyzer.py
+│   ├── test_llm.py
+│   ├── test_pdf_reader.py
+│   └── test_resume_search.py
+├── .gitignore
+├── README.md
 ├── requirements.txt
-└── README.md
-
+└── ui.py
+```
 
 ## How It Works
 
