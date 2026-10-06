@@ -21,43 +21,25 @@ The application:
 
 ## Architecture
 
-Resume PDF
-    |
-    v
-PDF Text Extraction
-    |
-    v
-Resume Chunking
-    |
-    v
-Sentence Transformer
-(all-MiniLM-L6-v2)
-    |
-    v
-Resume Embeddings
-    |
-    |
-Job Description ---> Requirement Extraction
-                         |
-                         v
-                  Hybrid Retrieval
-                   /            \
-                  /              \
-       Semantic Similarity    Keyword Matching
-                  \              /
-                   \            /
-                    v          v
-                 Ranked Evidence
-                       |
-                       v
-                      LLM
-                (Qwen3-0.6B)
-                       |
-                       v
-                Match + Gap Analysis
-                       |
-                       v
-                   Gradio UI
+```mermaid
+flowchart TD
+    A[Resume PDF] --> B[PDF Text Extraction]
+    B --> C[Resume Chunking]
+    C --> D[Sentence Transformer<br/>all-MiniLM-L6-v2]
+    D --> E[Resume Chunk Embeddings]
+
+    F[Job Description] --> G[Requirement Extraction]
+    G --> H[Semantic Similarity]
+    E --> H
+    G --> I[Keyword Matching]
+    C --> I
+    H --> J[Ranked Evidence]
+    I --> J
+
+    J --> K[LLM<br/>Qwen3-0.6B]
+    K --> L[Match and Gap Analysis]
+    L --> M[Gradio UI]
+```
 
 
 ## Key Features
