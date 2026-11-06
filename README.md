@@ -36,7 +36,7 @@ flowchart TD
     H --> J[Ranked Evidence]
     I --> J
 
-    J --> K[LLM<br/>Qwen3-0.6B]
+    J --> K[LLM<br/>gemini-3.8-flash]
     K --> L[Match and Gap Analysis]
     L --> M[Gradio UI]
 ```
@@ -59,6 +59,7 @@ ai-career-copilot/
 ├── app/
 │   ├── job_analyzer.py
 │   ├── llm.py
+│   ├── llm_gemini.py
 │   ├── pdf_reader.py
 │   └── resume_search.py
 ├── tests/

@@ -2,8 +2,9 @@ from app.job_analyzer import extract_requirements
 from sentence_transformers import SentenceTransformer
 from app.pdf_reader import extract_text_from_pdf
 from app.resume_search import chunk_resume,search_resume
-from app.llm import explain_match
+from app.llm_gemini import explain_match
 model=SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+
 import gradio as gr
 
 def analyze(Resume,JOB_Description):
