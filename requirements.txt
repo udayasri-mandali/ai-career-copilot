@@ -3,3 +3,4 @@ PyMuPDF
 sentence-transformers
 scikit-learn
 huggingface-hub
+> Automated architecture review enabled via GitHub Actions.
